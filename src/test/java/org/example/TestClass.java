@@ -56,13 +56,14 @@ public class TestClass {
 
     @Test
     public void addStudent_DuplicateId_ThrowError() {
-        String idStudent = "test";
+        String idStudent = "1";
         String numeStudent = "john";
         int grupa = 934;
         String email = "john_doe@yahoo.com";
         Student student = new Student(idStudent, numeStudent, grupa, email);
 
         try {
+            System.out.println(service.getAllStudenti());
             Student result = service.addStudent(student);
             assert(result == student);
         } catch (ValidationException exception) {
