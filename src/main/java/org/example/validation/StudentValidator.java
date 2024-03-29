@@ -22,7 +22,7 @@ public class StudentValidator implements Validator<Student> {
             if (entity.getID() == null) {
                 throw new ValidationException("Id incorect!");
             }
-            if (Integer.parseInt(entity.getID()) < 0) {
+            if (Integer.parseInt(entity.getID()) <= 0) {
                 throw new ValidationException("Id incorect!");
             }
             if (Integer.parseInt(entity.getID()) > Integer.MAX_VALUE) {

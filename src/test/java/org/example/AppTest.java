@@ -1,38 +1,40 @@
 package org.example;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.jupiter.api.Test;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+public class AppTest {
+    @Test
+    public void Test() {
+        // Create an instance of TestClass
+        TestClass testClass = new TestClass();
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+        // Call the setup method to initialize the service
+        TestClass.setup();
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+        // Call each test method individually
+        testClass.addStudent_ID_Zero();
+        testClass.addStudent_ID_MaxInt();
+        testClass.addStudent_ID_MinusOne();
+        testClass.addStudent_ID_One();
+        testClass.addStudent_ID_MaxIntMinusOne();
+        testClass.addStudent_ID_MaxIntPlusOne();
+        testClass.addStudent_Name_AaA();
+        testClass.addStudent_Name_AaA_A();
+        testClass.addStudent_Name_A();
+        testClass.addStudent_Name_Empty();
+        testClass.addStudent_Name_1a();
+        testClass.addStudent_Name_1();
+        testClass.addStudent_Group_100();
+        testClass.addStudent_Group_101();
+        testClass.addStudent_Group_999();
+        testClass.addStudent_Group_998();
+        testClass.addStudent_Group_99();
+        testClass.addStudent_Group_1000();
+        testClass.addStudent_Group_Zero();
+        testClass.addStudent_Email_A_Valid();
+        testClass.addStudent_Email_AtA_Invalid();
+        testClass.addStudent_Email_AAt_Invalid();
+        testClass.addStudent_Email_A_Invalid();
+        testClass.addStudent_Email_Empty();
     }
 }
