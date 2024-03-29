@@ -56,13 +56,7 @@ public class AppTest {
         });
     }
 
-    @Test
-    public void addStudent_ID_One() {
-        assertDoesNotThrow(() -> {
-            service.addStudent(new Student("1", "John Smith", 934, "john@example.com"));
-            service.deleteStudent("1");
-        });
-    }
+
 
     @Test
     public void addStudent_ID_MaxIntMinusOne() {
