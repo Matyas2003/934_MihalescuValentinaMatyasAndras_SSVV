@@ -1,8 +1,29 @@
+//package org.example;
+//
+//import org.junit.Test;
+//import org.junit.BeforeClass;
+//import org.example.domain.Student;
+//import org.example.repository.NotaXMLRepo;
+//import org.example.repository.StudentXMLRepo;
+//import org.example.repository.TemaXMLRepo;
+//import org.example.service.Service;
+//import org.example.validation.NotaValidator;
+//import org.example.validation.StudentValidator;
+//import org.example.validation.TemaValidator;
+//import org.example.validation.ValidationException;
+//
+//import static org.junit.Assert.*;
+//import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 package org.example;
 
-import org.junit.Test;
-import org.junit.BeforeClass;
 import org.example.domain.Student;
+import org.example.domain.Tema;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.example.repository.NotaXMLRepo;
 import org.example.repository.StudentXMLRepo;
 import org.example.repository.TemaXMLRepo;
@@ -12,14 +33,13 @@ import org.example.validation.StudentValidator;
 import org.example.validation.TemaValidator;
 import org.example.validation.ValidationException;
 
-import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
 
     public static Service service;
 
-    @BeforeClass
+    @BeforeAll
     public static void setup() {
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
@@ -33,7 +53,21 @@ public class AppTest {
         NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
         AppTest.service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
     }
-    // ID tests
+
+    @Test
+    public void addTema_Valid_nrTema() {
+        assertDoesNotThrow(() -> {
+            service.addTema(new Tema("100", "test", 12, 2));
+            service.deleteTema("100");
+        });
+    }
+    @Test
+    public void addTema_Invalid_nrTema_emptyString() {
+        assertThrows(ValidationException.class, () -> {
+            service.addTema(new Tema("", "test", 12, 2));
+        });
+    }
+
     @Test
     public void addStudent_ID_Zero() {
         assertThrows(ValidationException.class, () -> {
