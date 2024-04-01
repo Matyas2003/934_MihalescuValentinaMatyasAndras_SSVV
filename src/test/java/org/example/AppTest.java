@@ -1,29 +1,9 @@
-//package org.example;
-//
-//import org.junit.Test;
-//import org.junit.BeforeClass;
-//import org.example.domain.Student;
-//import org.example.repository.NotaXMLRepo;
-//import org.example.repository.StudentXMLRepo;
-//import org.example.repository.TemaXMLRepo;
-//import org.example.service.Service;
-//import org.example.validation.NotaValidator;
-//import org.example.validation.StudentValidator;
-//import org.example.validation.TemaValidator;
-//import org.example.validation.ValidationException;
-//
-//import static org.junit.Assert.*;
-//import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
 package org.example;
 
-import org.example.domain.Student;
 import org.example.domain.Tema;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.Test;
+import org.junit.BeforeClass;
+import org.example.domain.Student;
 import org.example.repository.NotaXMLRepo;
 import org.example.repository.StudentXMLRepo;
 import org.example.repository.TemaXMLRepo;
@@ -33,13 +13,15 @@ import org.example.validation.StudentValidator;
 import org.example.validation.TemaValidator;
 import org.example.validation.ValidationException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 
 public class AppTest {
 
     public static Service service;
 
-    @BeforeAll
+    @BeforeClass
     public static void setup() {
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
