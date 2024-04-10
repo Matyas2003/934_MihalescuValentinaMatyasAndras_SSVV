@@ -39,14 +39,56 @@ public class AppTest {
     @Test
     public void addTema_Valid_nrTema() {
         assertDoesNotThrow(() -> {
-            service.addTema(new Tema("100", "test", 12, 2));
+            service.addTema(new Tema("100", "test", 12, 11));
             service.deleteTema("100");
         });
     }
     @Test
-    public void addTema_Invalid_nrTema_emptyString() {
+    public void addTema_nrTema_emptyString() {
         assertThrows(ValidationException.class, () -> {
-            service.addTema(new Tema("", "test", 12, 2));
+            service.addTema(new Tema("", "test", 12, 11));
+        });
+    }
+
+    @Test
+    public void addTema_descriere_emptyString() {
+        assertThrows(ValidationException.class, () -> {
+            service.addTema(new Tema("101", "", 12, 11));
+        });
+    }
+
+    @Test
+    public void addTema_deadline_zero() {
+        assertThrows(ValidationException.class, () -> {
+            service.addTema(new Tema("102", "", 0, 11));
+        });
+    }
+
+    @Test
+    public void addTema_deadline_Fifteen() {
+        assertThrows(ValidationException.class, () -> {
+            service.addTema(new Tema("102", "test", 15, 11));
+        });
+    }
+
+    @Test
+    public void addTema_primire_Zero() {
+        assertThrows(ValidationException.class, () -> {
+            service.addTema(new Tema("103", "test", 12, 0));
+        });
+    }
+
+    @Test
+    public void addTema_primire_Fifteen() {
+        assertThrows(ValidationException.class, () -> {
+            service.addTema(new Tema("103", "test", 12, 15));
+        });
+    }
+
+    @Test
+    public void addTema_Valid() {
+        assertDoesNotThrow(() -> {;
+            service.addTema(new Tema("100", "test", 12, 1));
         });
     }
 
