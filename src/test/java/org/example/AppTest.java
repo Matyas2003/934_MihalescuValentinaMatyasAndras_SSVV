@@ -270,7 +270,7 @@ public class AppTest {
     }
 
     @Test
-    public void addNota_Valid() {
+    public void addNota_Invalid() {
         assertThrows(ValidationException.class, () -> {
             service.addStudent(new Student("1", "John Smith", 934, "a@a.com"));
             service.addTema(new Tema("100", "test", 12, 11));
@@ -279,10 +279,5 @@ public class AppTest {
             service.deleteTema("100");
             service.deleteNota("1");
         });
-    }
-
-    @Test
-    public void blackBox_valid() {
-
     }
 }
