@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.domain.Nota;
 import org.example.domain.Tema;
 import org.junit.Test;
 import org.junit.BeforeClass;
@@ -12,6 +13,8 @@ import org.example.validation.NotaValidator;
 import org.example.validation.StudentValidator;
 import org.example.validation.TemaValidator;
 import org.example.validation.ValidationException;
+
+import java.time.LocalDate;
 
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -264,5 +267,22 @@ public class AppTest {
         assertThrows(ValidationException.class, () -> {
             service.addStudent(new Student("1", "John Smith", 934, ""));
         });
+    }
+
+    @Test
+    public void addNota_Valid() {
+        assertThrows(ValidationException.class, () -> {
+            service.addStudent(new Student("1", "John Smith", 934, "a@a.com"));
+            service.addTema(new Tema("100", "test", 12, 11));
+            service.addNota(new Nota("1", "1", "100", 9, LocalDate.now()), "Good");
+            service.deleteStudent("1");
+            service.deleteTema("100");
+            service.deleteNota("1");
+        });
+    }
+
+    @Test
+    public void blackBox_valid() {
+
     }
 }
