@@ -280,4 +280,33 @@ public class AppTest {
             service.deleteNota("1");
         });
     }
+    @Test
+    public void addStudent_Incrementing() {
+        assertDoesNotThrow(() -> {
+            service.addStudent(new Student("1", "John Smith", 934, "a@a.com"));
+            service.deleteStudent("1");
+        });
+    }
+
+    @Test
+    public void addAssignment_Incrementing() {
+        assertDoesNotThrow(() -> {
+            service.addStudent(new Student("1", "John Smith", 934, "a@a.com"));
+            service.addTema(new Tema("100", "test", 12, 11));
+            service.deleteStudent("1");
+            service.deleteTema("100");
+        });
+    }
+
+    @Test
+    public void addNota_Incrementing() {
+        assertThrows(ValidationException.class, () -> {
+            service.addStudent(new Student("1", "John Smith", 934, "a@a.com"));
+            service.addTema(new Tema("100", "test", 12, 11));
+            service.addNota(new Nota("1", "1", "100", 9, LocalDate.now()), "Good");
+            service.deleteStudent("1");
+            service.deleteTema("100");
+            service.deleteNota("1");
+        });
+    }
 }
